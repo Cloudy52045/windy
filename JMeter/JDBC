@@ -12,4 +12,16 @@
     配置元件--属性解析
       Variable Name:变量名称，其实就是用来定义jdbc连接配置的配置名，后续请求的时候用。
       Connection Pool Configuration : 连接池配置（性能测试才需要改配置，和中间件的数据库的连接池配置保存一致）。
-      Dotabase URL:jdbc的连接
+      Dotabase URL:jdbc的连接地址
+      jdbc driver class：填写对应的jdbc驱动中的Driver类的路径，文件之间使用'.'分割
+      username：数据库的用户名  （权限问题）
+      password：对应的密码  
+  3.jdbc的请求
+    Variable Name：配置元件中填写的变量名。
+    SQL Query：要执行的SQL配置
+      Query Type:请求类型，类型要与执行的SQL语句必须匹配。
+      Parameter Values：prepared类型操作时，给问号传值，值与值之间','分割
+      Parameter type：用来指定参数的类型，类型、顺序、个数和实际的参数保持一致
+      参数类型：Varchar，Integer
+      Varible names: 变量名称，是用来存储从数据库中所查询的值，变量与值一一对应，','分割，数组方式，会生成隐藏的变量
+      ${username} {num}
