@@ -72,6 +72,73 @@ m = re.match(patt314,'3014')  # 点号匹配'0'
 m = re.match('[cr][23][dp][o2])','c3po')   # 匹配'c3po'
 m = re.match('c2r2|c3po','c2r2')           # 匹配'c2r2
 
+————    重复、特殊字符以及分组
+————————————————
+patt = '\w+@(\w+\.)?\w+\.com'
+re.match(patt,'nobody@xxx.com').group()
+re.match(patt,'nobody@www.xxx.com').group()
+————————————————
+patt = '\w+@(\w+\.)*\w+\.com'
+re.match(patt,'nobody@www.xxx.yyy.zzz.com')
+————————————————
+m = re.match('\w\w\w-\d\d\d','abc-123')
+if m in not None: m.group()
+
+————    返回匹配对象的子组
+————————————————
+m = re.match('(\w\w\w)-(\d\d\d'),'abc-123')
+m.group()         # 完整匹配
+m.group(1)--'abc'        # 子组 1
+m.group(2)--'123'        # 子组 2
+m.groups()        # 全部子组 
+
+——————    分组排列
+m = re.match('(a)(b)','ab')    # 两个子组
+m.group()           # 完整匹配
+m.group(1)--'a'     # 子组 1
+m.group(2)--'b'     # 子组 2
+m.group()           # 全部子组
+———————————————
+m = re.match('(a(b))','ab')     # 两个子组
+m.group(1)--'ab'    # 子组 1
+m.group(2)--'b'     # 子组 2
+
+————    匹配字符串的起始和结尾以及单词边界
+———————————————
+m = re.search(r'\bthe','bite the dog')--'the'    # 在边界
+m = re.search(r'\bthe','bitethe dog')--''     # 不在边界
+m = re.search(r.\Bthe','bitethe dog')--'the'  # 不在边界
+————    使用fnldall()和finditer()查找每一次出现的位置
+—— findall()查询字符串中某个正则表达式模式全部的非重复出现情况，返回一个列表，没有匹配，就返回一个空列表
+———————————————
+re.findall('car','carry the barcardi to the car')
+['car','car','car']
+
+————————————————
+s = 'This and That'
+re.findall(r'(th\w+)and(th\w+)',s,re.I)--  [('This','That')]         # re.I 不区分大小写的匹配
+re.finditer(r'(th\w+)and(th\w+),s,re.I).next().groups()--  ('This','That')
+re.finditer(r'(th\w+)and(th\w+),s,re.I).next().groups(1)--  ('This')
+re.finditer(r'(th\w+)and(th\w+),s,re.I).next().groups(2)--  ('That')
+[g.groups() for g in re.finditer(r'(th\w+)and(th\w+)',s,re,I)]--  [('This','That')]
+
+————    多重匹配
+————————————————
+s = 'This and That'
+re.findall(r'(th\w+)',s,re.I)--  ['This','That']
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
