@@ -168,6 +168,9 @@ for datum in DATA:
   print re.split(',|(?=(?:\d{5}|[A-Z]{2}))',datum)
 ['Mountain View','CA','9400']
 
+----    扩展符号
+----------------
+re.findall(r'(?i)yes','yes! Yes.YES!!')--   ['yes','Yes','YES']
 
 
 
