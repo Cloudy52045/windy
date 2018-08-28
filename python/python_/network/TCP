@@ -1,3 +1,7 @@
 ----    套接字:通讯端点
 --    套接字(socket)
 AF_UNIX 又名 AF_LOCAL 表示地址家族
+socket(socket_family,socket_type,protocol=0)     protocol通常省略，默认为0
+创建TCP/IP套接字
+  tcpsock=socket.socket()
+
